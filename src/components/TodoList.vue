@@ -3,12 +3,12 @@
     <ul>
       <!-- v-for는 각 아이템에 내부적으로 index를 부여한다. -->
       <!-- 해당 아이템을 클릭 했을 때, index 인자값을 removeTodo 메서드에 연결한다. -->
-      <li v-for="(todoItem, index) in todoItems" :key = "todoItem">
-        <i class="fa-solid fa-check checkBtn" v-bind:class="{checkBtnCompleted: todoItem.completed}" @click="toggleComplete(todoItem, index)"></i>
+      <li v-for="(todoItem, index) in items" :key = "todoItem.item">
+        <i class="fa-solid fa-check checkBtn" :class="{checkBtnCompleted: todoItem.completed}" @click="toggleComplete(todoItem, index)"></i>
         <span v-bind:class="{checkBtnCompleted: todoItem.completed}">
           {{ todoItem.item }}
         </span>
-          <i class="fa-solid fa-trash-can removeBtn" @click="removeTodo(todoItem, index)"></i>
+        <i class="fa-solid fa-trash-can removeBtn" @click="removeTodo(todoItem, index)"></i>
       </li>
     </ul>
   </div>
@@ -19,7 +19,7 @@
 export default {
   data() {
     return {
-      todoItems: []
+      items: []
     }
   },
   created() {
@@ -27,8 +27,9 @@ export default {
     if (localStorage.length > 0) {
       for(var i = 0; i< localStorage.length; i++){
         if (localStorage.key(i) !== 'loglevel:webpack-dev-server') {
+          localStorage.getItem(localStorage.key(i));
           //로컬 스토리지의 getItem() 메서드는 keyName을 인자로 keyValue를 리턴해 준다.
-          this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
+          this.items.push(JSON.parse(localStorage.getItem(localStorage.key(i))));
         }
       }
     }
@@ -36,14 +37,17 @@ export default {
   methods: {
     removeTodo(todoItem, index) {
       //localStorage에서 removeItem을 이용하여 todoItems의 값을 제거
-      localStorage.removeItem(todoItem);
+      localStorage.removeItem(todoItem.item);
+      this.items.splice(index, 1)
     },
     toggleComplete(todoItem){
+      // todoItem이 todoInput에서 false로 값이 할당이 되어있을때, 토글로 왔다갔다하게끔 false
       todoItem.completed = !todoItem.completed;
-      localStorage.removeItem(todoItem.item);
+      localStorage.removeItem(todoItem);
       localStorage.setItem(todoItem.item, JSON.stringify(todoItem));
     }
   },
+
 }
 </script>
 
