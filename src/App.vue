@@ -1,9 +1,9 @@
 <template>
   <div id="app">
-    <TodoHeader />
-    <TodoInput />
-    <TodoList />
-    <TodoFooter />
+    <TodoHeader></TodoHeader>
+    <TodoInput v-on:addItems="localValue"></TodoInput>
+    <TodoList v-bind:propsdata="nowItems" v-on:removeItems="todoRemove" v-on:checkedevent="toggleCheck"></TodoList>
+    <TodoFooter></TodoFooter>
   </div>
 </template>
 
@@ -14,7 +14,37 @@ import TodoList from "./components/TodoList.vue"
 import TodoFooter from "./components/TodoFooter.vue"
 
 export default {
-  name: 'App',
+  data(){
+    return {
+      nowItems: []
+    }
+  },
+  created(){
+    for(var i = 0; i < localStorage.length; i++) {
+      var parsing = JSON.parse(localStorage.getItem(localStorage.key(i)));
+      // JSON.parse(localStorage.getItem(localStorage.key(i)));
+      this.nowItems.push(parsing);
+    }
+  },
+  methods: {
+    localValue(addItem){
+      var obj = {
+        checked: false, items: addItem
+      }
+      localStorage.setItem(addItem, JSON.stringify(obj));
+      this.nowItems.push(obj)
+    },
+    todoRemove(rmItem, index){
+      localStorage.removeItem(rmItem.items);
+      this.nowItems.splice(index, 1);
+    },
+    toggleCheck(toggleItem){
+      // console.log("만세");
+      toggleItem.checked = !toggleItem.checked;
+      localStorage.removeItem(toggleItem);
+      localStorage.setItem(toggleItem.items, JSON.stringify(toggleItem));
+    },
+  },
   components: {
     TodoHeader,
     TodoInput,

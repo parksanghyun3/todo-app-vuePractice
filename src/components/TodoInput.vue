@@ -16,18 +16,8 @@ export default {
     }
   },
   methods: {
-    addTodo (){
-
-      //처음부터 문자열로 할당하고, parse를 사용할 수 있는지
-      var obj = {
-        completed: false, item: this.newTodoItem
-      };
-
-      // key값과 value값을 동일하게 해주는 작업
-      localStorage.setItem(this.newTodoItem, JSON.stringify(obj)); // 값이 문자열로 반환
-      this.clearInput();
-    },
-    clearInput(){
+    addTodo(){
+      this.$emit("addItems", this.newTodoItem);
       this.newTodoItem = "";
     }
   }
