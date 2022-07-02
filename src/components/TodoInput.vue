@@ -5,21 +5,41 @@
     <span class="addContainer" @click="addTodo">
       <i class="fa-solid fa-plus"></i>
     </span>
+
+    <AlertModal v-if="showModal" @close="showModal = false">
+      <h3 slot="header">
+        경고
+        <i class="fa-solid fa-xmark closeModalBtn" @click="showModal = false"></i>
+      </h3>
+      <div slot="body">
+        무언가를 입력해주세요
+      </div>
+    </AlertModal>
   </div>
 </template>
 
 <script>
+import AlertModal from "../components/common/AlertModal.vue"
+
 export default {
   data() {
     return {
-      newTodoItem: ""
+      newTodoItem: "",
+      showModal: false
     }
   },
   methods: {
     addTodo(){
-      this.$emit("addItems", this.newTodoItem);
-      this.newTodoItem = "";
+      if(this.newTodoItem !== "") { //여기서 조건문이 들어가야 input눌렀을 때 공백이 안생김
+        this.$emit("addItems", this.newTodoItem);
+        this.newTodoItem = "";
+      } else {
+        this.showModal = true;
+      }
     }
+  },
+  components: {
+    AlertModal: AlertModal
   }
 }
 </script>

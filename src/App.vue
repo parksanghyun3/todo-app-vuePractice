@@ -3,7 +3,7 @@
     <TodoHeader></TodoHeader>
     <TodoInput v-on:addItems="localValue"></TodoInput>
     <TodoList v-bind:propsdata="nowItems" v-on:removeItems="todoRemove" v-on:checkedevent="toggleCheck"></TodoList>
-    <TodoFooter></TodoFooter>
+    <TodoFooter v-on:clearAll="clearAllItem"></TodoFooter>
   </div>
 </template>
 
@@ -44,6 +44,10 @@ export default {
       localStorage.removeItem(toggleItem);
       localStorage.setItem(toggleItem.items, JSON.stringify(toggleItem));
     },
+    clearAllItem(){
+      localStorage.clear();
+      this.nowItems = [];
+    }
   },
   components: {
     TodoHeader,

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul>
+    <transition-group tag="ul" name="list">
       <!-- v-for는 각 아이템에 내부적으로 index를 부여한다. -->
       <!-- 해당 아이템을 클릭 했을 때, index 인자값을 removeTodo 메서드에 연결한다. -->
       <li v-for="(todoItem, index) in propsdata" :key = "todoItem.items">
@@ -10,7 +10,7 @@
         </span>
         <i class="fa-solid fa-trash-can removeBtn" @click="removeTodo(todoItem, index)"></i>
       </li>
-    </ul>
+    </transition-group>
   </div>
 </template>
 
@@ -40,5 +40,5 @@ export default {
   .textCompleted {color: #b3adad;}
   /* 리스트 아이템 트랜지션 효과 */
   .list-enter-active, .list-leave-active {transition: all 1s;}
-  .list-enter, list-leave-to {opacity: 0; transform: translateY(30px);}
+  .list-enter, .list-leave-to {opacity: 0; transform: translateY(30px);}
 </style>
