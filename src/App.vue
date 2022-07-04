@@ -20,15 +20,15 @@ export default {
     }
   },
   created(){
-    for(var i = 0; i < localStorage.length; i++) {
-      var parsing = JSON.parse(localStorage.getItem(localStorage.key(i)));
+    for(let i = 0; i < localStorage.length; i++) {
+      const parsing = JSON.parse(localStorage.getItem(localStorage.key(i)));
       // JSON.parse(localStorage.getItem(localStorage.key(i)));
       this.nowItems.push(parsing);
     }
   },
   methods: {
     localValue(addItem){
-      var obj = {
+      const obj = {
         checked: false, items: addItem
       }
       localStorage.setItem(addItem, JSON.stringify(obj));

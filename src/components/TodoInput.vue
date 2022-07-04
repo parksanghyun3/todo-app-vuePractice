@@ -7,7 +7,7 @@
     </span>
 
     <AlertModal v-if="showModal" @close="showModal = false">
-      <h3 slot="header">
+      <h3 slot="header" class="close">
         경고
         <i class="fa-solid fa-xmark closeModalBtn" @click="showModal = false"></i>
       </h3>
@@ -51,5 +51,6 @@ export default {
   .addContainer {float: right; background: #fff; display: block; width: 50px; height: 100%; border-radius: 0 5px 5px 0; cursor: pointer;}
   i {color: #000;}
   .addBtn {cursor: pointer; color: #000; vertical-align: middle;}
-  .closeModalBtn {color: #42b983;}
+  .closeModalBtn {color: #42b983; cursor: pointer;}
+  .AlertModal {transition: all .5s;}
 </style>
