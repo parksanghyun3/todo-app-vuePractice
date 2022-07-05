@@ -1,44 +1,45 @@
 <template>
 	<div>
-		<transition name="AlertModal">
-			<div class="AlertModal-mask">
-				<div class="AlertModal-wrapper">
-					<div class="AlertModal-container">
-
-						<div class="AlertModal-header">
-							<slot name="header">
-								default header
-							</slot>
-						</div>
-
-						<div class="AlertModal-body">
-							<slot name="body">
-								default body
-							</slot>
-						</div>
-					</div>
-				</div>
-			</div>
-		</transition>
+      <transition name="modal">
+        <div class="modal-mask">
+          <div class="modal-wrapper">
+            <div class="modal-container">
+              <div class="modal-header">
+                <slot name="header">
+                  default header
+                </slot>
+              </div>
+              <div class="modal-body">
+                <slot name="body">
+                  default body
+                </slot>
+              </div>
+            </div>
+          </div>
+        </div>
+      </transition>
 	</div>
 </template>
 
-<script>
-export default {
-
-}
-</script>
-
 <style>
-.AlertModal-mask {position: fixed; z-index: 9998; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); display: table; transition: opacity 0.3s ease;
+	.modal-mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  transition: opacity 0.3s ease;
 }
 
-.AlertModal-wrapper {
+.modal-wrapper {
   display: table-cell;
   vertical-align: middle;
 }
 
-.AlertModal-container {
+.modal-container {
   width: 300px;
   margin: 0px auto;
   padding: 20px 30px;
@@ -49,38 +50,38 @@ export default {
   font-family: Helvetica, Arial, sans-serif;
 }
 
-.AlertModal-header h3 {
+.modal-header h3 {
   margin-top: 0;
   color: #42b983;
 }
 
-.AlertModal-body {
+.modal-body {
   margin: 20px 0;
 }
 
-.AlertModal-default-button {
+.modal-default-button {
   float: right;
 }
 
 /*
  * The following styles are auto-applied to elements with
- * transition="AlertModal" when their visibility is toggled
+ * transition="modal" when their visibility is toggled
  * by Vue.js.
  *
- * You can easily play with the AlertModal transition by editing
+ * You can easily play with the modal transition by editing
  * these styles.
  */
 
-.AlertModal-enter {
+.modal-enter {
   opacity: 0;
 }
 
-.AlertModal-leave-active {
+.modal-leave-active {
   opacity: 0;
 }
 
-.AlertModal-enter .AlertModal-container,
-.AlertModal-leave-active .AlertModal-container {
+.modal-enter .modal-container,
+.modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
 }
