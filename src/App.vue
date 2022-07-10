@@ -19,13 +19,6 @@ export default {
       nowItems: []
     }
   },
-  created(){
-    for(let i = 0; i < localStorage.length; i++) {
-      const parsing = JSON.parse(localStorage.getItem(localStorage.key(i)));
-      // JSON.parse(localStorage.getItem(localStorage.key(i)));
-      this.nowItems.push(parsing);
-    }
-  },
   methods: {
     localValue(addItem){
       const obj = {
