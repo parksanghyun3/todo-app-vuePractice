@@ -24,17 +24,18 @@ import AlertModal from "../components/common/AlertModal.vue"
 export default {
   data() {
     return {
+      showModal: false,
       newTodoItem: "",
-      showModal: false
     }
   },
   methods: {
     addTodo(){
-      if(this.newTodoItem !== "") { //여기서 조건문이 들어가야 input눌렀을 때 공백이 안생김
+      if(this.newTodoItem == "") { //여기서 조건문이 들어가야 input눌렀을 때 공백이 안생김
+        this.showModal = true;
+
+      } else {
         this.$emit("addItems", this.newTodoItem);
         this.newTodoItem = "";
-      } else {
-        this.showModal = true;
       }
     }
   },
