@@ -3,7 +3,7 @@
     <transition-group tag="ul" name="list">
       <!-- v-for는 각 아이템에 내부적으로 index를 부여한다. -->
       <!-- 해당 아이템을 클릭 했을 때, index 인자값을 removeTodo 메서드에 연결한다. -->
-      <li v-for="(todoItem, index) in propsdata" :key = "todoItem.items">
+      <li v-for="(todoItem, index) in this.$store.state.nowItems" :key = "todoItem.items">
         <i class="fa-solid fa-check checkBtn" :class="{checkBtnCompleted: todoItem.checked}" @click="toggleComplete(todoItem)"></i>
         <span v-bind:class="{checkBtnCompleted: todoItem.checked}">
           {{ todoItem.items }}
