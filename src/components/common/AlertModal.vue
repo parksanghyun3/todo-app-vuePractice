@@ -72,10 +72,12 @@
 
 .modal-enter {
   opacity: 0;
+  transition: all .5s;
 }
 
 .modal-leave-active {
   opacity: 0;
+  transition: all .5s;
 }
 
 .modal-enter .modal-container,
