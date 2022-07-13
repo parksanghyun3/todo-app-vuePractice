@@ -17,7 +17,7 @@
 <script>
 /* eslint-disable */
 export default {
-  props: ["propsdata"],
+  // props: ["propsdata"],
   methods: {
     removeTodo(todoItem, index){
       this.$emit("removeItems", todoItem, index);
