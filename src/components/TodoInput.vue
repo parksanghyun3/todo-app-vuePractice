@@ -1,22 +1,20 @@
 <template>
-  <div>
-    <div class="inputBox">
-      <input type="text" v-model="newTodoItem" @keyup.enter="addTodo">
-      <!-- <button v-on:click="addTodo">add</button> -->
-      <span class="addContainer" @click="addTodo">
-        <i class="fa-solid fa-plus"></i>
-      </span>
+  <div class="inputBox">
+    <input type="text" v-model="newTodoItem" @keyup.enter="addTodo">
+    <!-- <button v-on:click="addTodo">add</button> -->
+    <span class="addContainer" @click="addTodo">
+      <i class="fa-solid fa-plus"></i>
+    </span>
 
-      <AlertModal v-if="showModal" @close="showModal = false">
-        <h3 slot="header">
-          경고
-          <i class="fa-solid fa-xmark closeModalBtn" @click="showModal = false"></i>
-        </h3>
-        <div slot="body">
-          무언가를 입력해주세요
-        </div>
-      </AlertModal>
-    </div>
+    <AlertModal v-if="showModal" @close="showModal = false">
+      <h3 slot="header">
+        경고
+        <i class="fa-solid fa-xmark closeModalBtn" @click="showModal = false"></i>
+      </h3>
+      <div slot="body">
+        무언가를 입력해주세요
+      </div>
+    </AlertModal>
   </div>
 </template>
 
@@ -56,6 +54,5 @@ export default {
   .addContainer {float: right; background: #fff; display: block; width: 50px; height: 100%; border-radius: 0 5px 5px 0; cursor: pointer;}
   i {color: #000;}
   .addBtn {cursor: pointer; color: #000; vertical-align: middle;}
-  .closeModalBtn {color: #42b983; cursor: pointer;}
-  .AlertModal {transition: all .5s;}
+  .closeModalBtn {color: #42b983;}
 </style>
