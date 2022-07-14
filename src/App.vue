@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <TodoHeader></TodoHeader>
-    <TodoInput v-on:addItems="localValue"></TodoInput>
-    <TodoList v-bind:propsdata="nowItems" v-on:removeItems="todoRemove" v-on:checkedevent="toggleCheck"></TodoList>
-    <TodoFooter v-on:clearAll="clearAllItem"></TodoFooter>
+    <TodoInput></TodoInput>
+    <TodoList></TodoList>
+    <TodoFooter></TodoFooter>
   </div>
 </template>
 
@@ -20,27 +20,24 @@ export default {
     }
   },
   methods: {
-    localValue(addItem){
-      const obj = {
-        checked: false, items: addItem
-      }
-      localStorage.setItem(addItem, JSON.stringify(obj));
-      this.nowItems.push(obj)
-    },
-    todoRemove(rmItem, index){
-      localStorage.removeItem(rmItem.items);
-      this.nowItems.splice(index, 1);
-    },
-    toggleCheck(toggleItem){
-      // console.log("만세");
-      toggleItem.checked = !toggleItem.checked;
-      localStorage.removeItem(toggleItem);
-      localStorage.setItem(toggleItem.items, JSON.stringify(toggleItem));
-    },
-    clearAllItem(){
-      localStorage.clear();
-      this.nowItems = [];
-    }
+    // localValue(addItem){
+    //   const obj = {checked: false, items: addItem}
+    //   localStorage.setItem(addItem, JSON.stringify(obj));
+    //   this.nowItems.push(obj)
+    // },
+    // todoRemove(rmItem, index){
+    //   localStorage.removeItem(rmItem.items);
+    //   this.nowItems.splice(index, 1);
+    // },
+    // toggleCheck(toggleItem){
+    //   toggleItem.checked = !toggleItem.checked;
+    //   localStorage.removeItem(toggleItem);
+    //   localStorage.setItem(toggleItem.items, JSON.stringify(toggleItem));
+    // },
+    // clearAllItem(){
+    //   localStorage.clear();
+    //   this.nowItems = [];
+    // }
   },
   components: {
     TodoHeader,

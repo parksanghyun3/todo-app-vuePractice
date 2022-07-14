@@ -5,7 +5,7 @@
       <!-- 해당 아이템을 클릭 했을 때, index 인자값을 removeTodo 메서드에 연결한다. -->
       <li v-for="(todoItem, index) in this.$store.state.nowItems" :key = "todoItem.items">
         <i class="fa-solid fa-check checkBtn" :class="{checkBtnCompleted: todoItem.checked}" @click="toggleComplete(todoItem)"></i>
-        <span v-bind:class="{checkBtnCompleted: todoItem.checked}">
+        <span :class="{checkBtnCompleted: todoItem.checked}">
           {{ todoItem.items }}
         </span>
         <i class="fa-solid fa-trash-can removeBtn" @click="removeTodo(todoItem, index)"></i>
@@ -17,16 +17,18 @@
 <script>
 /* eslint-disable */
 export default {
-  props: ["propsdata"],
+  // props: ["propsdata"],
   methods: {
     removeTodo(todoItem, index){
-      this.$emit("removeItems", todoItem, index);
+      let store = this.$store;
+      // this.$emit("removeItems", todoItem, index);
+      store.commit("todoRemove", {todoItem, index});
     },
     toggleComplete(todoItem){
-      this.$emit("checkedevent", todoItem);
+      // this.$emit("checkedevent", todoItem);
+      this.$store.commit("toggleCheck", todoItem);
     }
   },
-
 }
 </script>
 

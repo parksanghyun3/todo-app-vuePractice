@@ -36,7 +36,9 @@ export default {
         this.showModal = true;
 
       } else {
-        this.$emit("addItems", this.newTodoItem);
+        // this.$emit("addItems", this.newTodoItem);
+        // const text = this.newTodoItem.trim();
+        this.$store.commit("localValue", this.newTodoItem);
         this.newTodoItem = "";
       }
     }
