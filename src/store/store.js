@@ -49,7 +49,7 @@ export const store = new Vuex.Store({
     },
     checkedAll(state) {
       for(let i = 0; i < localStorage.length; i++) {
-        state.nowItems[i].checked = true;
+        state.nowItems[i].checked = !state.nowItems[i].checked;
         localStorage.removeItem(state.nowItems[i].items);
         localStorage.setItem(state.nowItems[i].items, JSON.stringify(state.nowItems[i]));
       }
