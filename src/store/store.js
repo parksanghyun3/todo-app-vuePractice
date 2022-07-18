@@ -26,6 +26,12 @@ export const store = new Vuex.Store({
   },
   // mutations 는 기본적인 매개변수로 state를 갖는다.
   // 인자값으로는 payload를 많이 사용한다.
+  getters: {
+    storedNowItems(state) {
+      return state.nowItems
+    }
+    
+  }, 
   mutations: {
     localValue(state, payload){
       const obj = {checked: false, items: payload}
