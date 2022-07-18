@@ -4,7 +4,7 @@
       <!-- v-for는 각 아이템에 내부적으로 index를 부여한다. -->
       <!-- 해당 아이템을 클릭 했을 때, index 인자값을 removeTodo 메서드에 연결한다. -->
       <li v-for="(todoItem, index) in this.$store.state.nowItems" :key = "todoItem.items">
-        <i class="fa-solid fa-check checkBtn" :class="{checkBtnCompleted: todoItem.checked}" @click="toggleComplete(todoItem)"></i>
+        <i class="fa-solid fa-check checkBtn" :class="{checkBtnCompleted: todoItem.checked, checkBtnUnCompleted: todoItem.checked}" @click="toggleComplete(todoItem)"></i>
         <span :class="{checkBtnCompleted: todoItem.checked}">
           {{ todoItem.items }}
         </span>
@@ -38,7 +38,8 @@ export default {
   li span {width: 100%;}
   .checkBtn {color: #62acde; margin-right: 5px; cursor: pointer;}
   .removeBtn {text-align: right; color : #de4343; cursor: pointer;}
-  .checkBtnCompleted {color : #b3adad;}
+  .checkBtnCompleted {color : #b3adad; transition: all .5s;}
+  .checkBtnUnCompleted {color : #b3adad; transition: all .5s;}
   .textCompleted {color: #b3adad;}
   /* 리스트 아이템 트랜지션 효과 */
   .list-enter-active, .list-leave-active {transition: all 1s;}
