@@ -8,35 +8,39 @@
         <span :class="{checkBtnCompleted: todoItem.checked}">
           {{ todoItem.items }}
         </span>
-        <i class="fa-solid fa-trash-can removeBtn" @click="removeTodo(todoItem, index)"></i>
+        <i class="fa-solid fa-trash-can removeBtn" @click="removeTodo({todoItem, index})"></i>
       </li>
     </transition-group>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters, mapMutations } from 'vuex';
 
 /* eslint-disable */
 export default {
-  // props: ["propsdata"],
   methods: {
-    removeTodo(todoItem, index){
-      let store = this.$store;
-      // this.$emit("removeItems", todoItem, index);
-      store.commit("todoRemove", {todoItem, index});
-    },
-    toggleComplete(todoItem){
-      // this.$emit("checkedevent", todoItem);
-      this.$store.commit("toggleCheck", todoItem);
-    }
+    ...mapMutations({
+      removeTodo: "todoRemove",
+      toggleComplete: "toggleCheck"
+    })
+    // removeTodo(todoItem, index){
+    //   let store = this.$store;
+    //   this.$emit("removeItems", todoItem, index);
+    //   store.commit("todoRemove", {todoItem, index});
+    // },
+    ,
+    // toggleComplete(todoItem){
+    //   this.$emit("checkedevent", todoItem);
+    //   store.commit("toggleCheck", todoItem);
+    // }
   },
   computed: {
     // nowItems() {
     //   return this.$store.getters.storedNowItems;
     // }
-    // ...mapState([""])
-    ...mapGetters(["storedNowItems"]),
+    // ...mapState(["storedNowItems"]),
+    ...mapGetters(["storedNowItems"])
     // ...mapGetters({
     //    nowItems : "storedNowItems"
     //   }) 
